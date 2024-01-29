@@ -13,12 +13,8 @@ class Task(Base):
     priority = Column(String, nullable=False)
     name = Column(String(), index=True)
     enrollment_date = Column(DateTime(), default=datetime.utcnow)
-    
-    # Relationship with Categories table
     category_id = Column(Integer, ForeignKey('categories.id'))
     category = relationship('Categories', back_populates='tasks')
-
-    # Relationship with Users table
     user_id = Column(Integer, ForeignKey('users.id'))
     user = relationship('Users', back_populates='tasks')
 
