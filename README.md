@@ -1,5 +1,5 @@
 # task_manager
-
+## Author: Martin Maina
 task_manager/
 ├── alembic/
 │   ├── versions/
