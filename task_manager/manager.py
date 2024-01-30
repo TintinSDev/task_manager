@@ -1,6 +1,5 @@
-# task_manager/manager.py
 import fire
-from task_manager.models import Task, session
+from models import Task, session
 
 class TaskManager:
     def add_task(self, description, priority):

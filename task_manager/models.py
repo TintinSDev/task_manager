@@ -72,7 +72,8 @@ class Users(Base):
 
     
     
-    
+DATABASE_URL = "sqlite:///task_manager.db" 
 engine = create_engine('sqlite:///task_manager.db')
-Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
+session = Session()
+Base.metadata.create_all(bind=engine)
