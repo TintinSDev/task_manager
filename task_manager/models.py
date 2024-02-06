@@ -14,6 +14,7 @@ class Task(Base):
     name = Column(String(), index=True)
     enrollment_date = Column(DateTime(), default=datetime.utcnow)
     category_id = Column(Integer, ForeignKey('categories.id'))
+    category = relationship('Categories', back_populates='tasks')
     user_id = Column(Integer, ForeignKey('users.id'))
     user = relationship('Users', back_populates='tasks')
 
@@ -21,8 +22,8 @@ class Categories(Base):
     __tablename__ = 'categories'
     
     id = Column(Integer, primary_key=True)
-    name = Column(String(), index=True)
-   
+    name = Column(String())
+    description = Column(String())
     
     # Relationship with Task table
     tasks = relationship('Task', back_populates='category')
@@ -49,6 +50,7 @@ class Users(Base):
     name = Column(String(), index=True)
     surname = Column(String(), index=True)
     enrollment_date = Column(DateTime(), default=datetime.utcnow)
+    
 
     # Relationship with Task table
     tasks = relationship('Task', back_populates='user')

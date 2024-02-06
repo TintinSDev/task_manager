@@ -1,24 +1,13 @@
-# import fire
-from models import Task, Categories, Users, session
-from datetime import datetime
-
+from models import Task, session
+import ipdb
 
 class TaskManager:
-    def add_task(self, description, priority, name, enrollment_date, category_name, username):
-        category = session.query(Categories).filter_by(name=category_name).first()
-        user = session.query(Users).filter_by(username=username).first()
-
-        if not category:
-            print(f"Error: Category '{category_name}' does not exist.")
-            return
-        if not user:
-            print(f"Error: User '{username}' does not exist.")
-            return
-
-        new_task = Task(description=description, priority=priority, name=name, enrollment_date=enrollment_date, category=category, user=user)
+    def add_task(self, description, priority):
+        new_task = Task(description=description, priority=priority)
         session.add(new_task)
         session.commit()
-        print(f'Task added: {description} (Priority: {priority}, Name: {name}, Enrollment Date: {enrollment_date}, Category: {category_name}, User: {username})')
+        print(f'Task added: {description} (Priority: {priority})')
+
     def list_tasks(self):
         tasks = session.query(Task).all()
         if not tasks:
@@ -26,7 +15,7 @@ class TaskManager:
         else:
             print('Tasks:')
             for task in tasks:
-                print(f'{task.id}. {task.description} (Priority: {task.priority}, Name: {task.name}, Enrollment Date: {task.enrollment_date}, Category ID: {task.category_id}, User ID: {task.user_id})')
+                print(f'{task.id}. {task.description} (Priority: {task.priority})')
 
 def main():
     manager = TaskManager()
@@ -36,11 +25,7 @@ def main():
         if choice == "1":
             description = input("Enter task description: ")
             priority = input("Enter task priority: ")
-            name = input("Enter task name: ")
-            enrollment_date = datetime.utcnow()
-            category_id = input("Enter category ID: ")
-            user_id = input("Enter user ID: ")
-            manager.add_task(description, priority, name, enrollment_date, category_id, user_id)
+            manager.add_task(description, priority)
         elif choice == "2":
             manager.list_tasks()
         elif choice == "3":
@@ -51,5 +36,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-# if __name__ == '__main__':
-#     fire.Fire(TaskManager)
