@@ -1,0 +1,2 @@
+alembic revision --autogenerate -m "Description of migration"
+alembic upgrade head
