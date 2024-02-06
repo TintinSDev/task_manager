@@ -1,7 +1,6 @@
-# import fire
 from models import Task, Categories, Users, session
 from datetime import datetime
-
+import ipdb; ipdb.set_trace()
 
 class TaskManager:
     def add_task(self, description, priority, name, enrollment_date, category_name, username):
@@ -51,5 +50,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-# if __name__ == '__main__':
-#     fire.Fire(TaskManager)
