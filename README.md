@@ -64,7 +64,8 @@ Run your sqlite database and viola, all your tasks added
 
 ## Fire Library Code for tasks
 
-```import fire
+```
+import fire
 from models import Task, session
 
 class TaskManager:
