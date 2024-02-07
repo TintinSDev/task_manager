@@ -2,8 +2,8 @@ from models import Users, session
 from datetime import datetime
 
 class UserManager:
-    def add_user(self, username, password, email, name, surname):
-        new_user = Users(username=username, password=password, email=email, name=name, surname=surname)
+    def add_user(self, username, password):
+        new_user = Users(username=username, password=password)
         session.add(new_user)
         session.commit()
         print(f'User added: {username}')
@@ -15,7 +15,7 @@ class UserManager:
         else:
             print('Users:')
             for user in users:
-                print(f'{user.id}. {user.username} ({user.email})')
+                print(f'{user.id}. {user.username} ')
 
 def main():
     manager = UserManager()
@@ -25,10 +25,7 @@ def main():
         if choice == "1":
             username = input("Enter username: ")
             password = input("Enter password: ")
-            email = input("Enter email: ")
-            name = input("Enter name: ")
-            surname = input("Enter surname: ")
-            manager.add_user(username, password, email, name, surname)
+            manager.add_user(username, password)
         elif choice == "2":
             manager.list_users()
         elif choice == "3":

@@ -46,9 +46,6 @@ class Users(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String(), index=True)
     password = Column(String(), nullable=False)
-    email = Column(String(55))
-    name = Column(String(), index=True)
-    surname = Column(String(), index=True)
     enrollment_date = Column(DateTime(), default=datetime.utcnow)
     
 
@@ -61,12 +58,10 @@ class Users(Base):
     def __str__(self):
         return self.username
 
-    def __init__(self, username, password, email, name, surname):
+    def __init__(self, username, password):
         self.username = username
         self.password = password
-        self.email = email
-        self.name = name
-        self.surname = surname
+        
 
     def __eq__(self, other):
         return self.username == other.username
