@@ -62,4 +62,28 @@ cd into task_manager
 Run $python manager.py add_task --description "Your task description" --priority "Your priority" --name "name of user" --enrollment_date "date of enrollment" --category_id "" --user_id ""
 Run your sqlite database and viola, all your tasks added
 
+## Fire Library Code for tasks
+
+```import fire
+from models import Task, session
+
+class TaskManager:
+    def add_task(self, description, priority,username):
+        new_task = Task(description=description, priority=priority, username=username)
+        session.add(new_task)
+        session.commit()
+        print(f'Task added: {description} (Priority: {priority}, Assigned to: {username})')
+
+    def list_tasks(self):
+        tasks = session.query(Task).all()
+        if not tasks:
+            print('No tasks found.')
+        else:
+            print('Tasks:')
+            for task in tasks:
+                print(f'{task.id}. {task.description} (Priority: {task.priority} Assigned to: {username})')
+
+if __name__ == '__main__':
+    fire.Fire(TaskManager) ```
+
 
