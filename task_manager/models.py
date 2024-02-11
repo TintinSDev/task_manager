@@ -3,8 +3,9 @@ from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 
-Base = declarative_base()
 
+
+Base = declarative_base()
 class Task(Base):
     __tablename__ = 'tasks'
 
@@ -22,23 +23,20 @@ class Categories(Base):
     __tablename__ = 'categories'
     
     id = Column(Integer, primary_key=True)
-    name = Column(String())
-    description = Column(String())
+
+    description = Column(String(), index=True)
     
     # Relationship with Task table
     tasks = relationship('Task', back_populates='category')
 
     def __repr__(self):
-        return f'<Categories {self.name}>'
-
+        return f'<Categories {self.description}>'
     def __str__(self):
-        return self.name
-
-    def __init__(self, name):
-        self.name = name
-
+        return self.description
+    def __init__(self, description):
+        self.description = description
     def __eq__(self, other):
-        return self.name == other.name
+        return self.description == other.description
 
 class Users(Base):
     __tablename__ = 'users'
@@ -67,9 +65,9 @@ class Users(Base):
         return self.username == other.username
 
     
-    
 DATABASE_URL = "sqlite:///task_manager.db" 
-engine = create_engine('sqlite:///task_manager.db')
+engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 session = Session()
 Base.metadata.create_all(bind=engine)
+

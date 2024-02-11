@@ -1,21 +1,29 @@
-from models import Users, session
-from datetime import datetime
+from models import Users
+from database import Session
 
+session = Session()
 class UserManager:
     def add_user(self, username, password):
-        new_user = Users(username=username, password=password)
-        session.add(new_user)
-        session.commit()
-        print(f'User added: {username}')
+        try:
+            new_user = Users(username=username, password=password)
+            session.add(new_user)
+            session.commit()
+            print(f'User added: {username}')
+        except Exception as e:
+            session.rollback()
+            print(f'Error adding user: {e}')
 
     def list_users(self):
-        users = session.query(Users).all()
-        if not users:
-            print('No users found.')
-        else:
-            print('Users:')
-            for user in users:
-                print(f'{user.id}. {user.username} ')
+        try:
+            users = session.query(Users).all()
+            if not users:
+                print('No users found.')
+            else:
+                print('Users:')
+                for user in users:
+                    print(f'{user.id}. {user.username} ')
+        except Exception as e:
+            print(f'Error listing users: {e}')
 
 def main():
     manager = UserManager()

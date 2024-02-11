@@ -1,20 +1,30 @@
-from models import Task, session
+from models import Task
+from database import Session
+
+session = Session()
 
 class TaskManager:
-    def add_task(self, description, priority, username):  # Updated method signature
-        new_task = Task(description=description, priority=priority, username=username)  # Pass username to Task creation
-        session.add(new_task)
-        session.commit()
-        print(f'Task added: {description} (Priority: {priority}, Assigned to: {username})')  # Print the assigned username along with the task details
+    def add_task(self, description, priority, username): 
+        try:
+            new_task = Task(description=description, priority=priority, username=username)  
+            session.add(new_task)
+            session.commit()
+            print(f'Task added: {description} (Priority: {priority}, Assigned to: {username})')  
+        except Exception as e:
+            session.rollback()
+            print(f'Error adding task: {e}')
 
     def list_tasks(self):
-        tasks = session.query(Task).all()
-        if not tasks:
-            print('No tasks found.')
-        else:
-            print('Tasks:')
-            for task in tasks:
-                print(f'{task.id}. {task.description} (Priority: {task.priority}, Assigned to: {task.username})')  
+        try:
+            tasks = session.query(Task).all()
+            if not tasks:
+                print('No tasks found.')
+            else:
+                print('Tasks:')
+                for task in tasks:
+                    print(f'{task.id}. {task.description} (Priority: {task.priority}, Assigned to: {task.username})')  
+        except Exception as e:
+            print(f'Error listing tasks: {e}')
 
 def main():
     manager = TaskManager()
