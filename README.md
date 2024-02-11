@@ -1,20 +1,33 @@
-# task_manager
+#TASK_MANAGER CLI
+
 ## Author: Martin Maina
-task_manager/
-├── alembic/
-│   ├── versions/
-│   │   └── ... (your migration scripts)
-│   ├── env.py
-│   └── script.py.mako
+
+```
+TASK_MANAGER/
+├── 
 ├── task_manager/
+│   ├── __pycache__
+│   │    ├── .gitignore
+│   │    └── .pyc files
+│   ├── alembic/
+│   │   ├── versions/
+│   │   └── migration package
+│   │   ├── env.py
+│   │   └── script.py.mako
+│   │
 │   ├── __init__.py
 │   ├── models.py
 │   ├── database.py
-│   └── ...
+│   ├── users.py
+│   ├── manager.py
+│   ├── seed.py
+│   └── task_manager.db
 ├── Pipfile
 ├── Pipfile.lock
 └── alembic.ini
+└── README.md 
 
+```
 
 In this example below:
 
