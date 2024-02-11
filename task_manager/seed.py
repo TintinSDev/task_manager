@@ -14,9 +14,6 @@ session.commit()
 user_ids = {user.username: user.id for user in users}
 # print("User IDs:", user_ids) 
 
-
-
-
 # Generate descriptions for categories
 category_descriptions = [fake.text() for _ in range(4)]
 
@@ -44,11 +41,6 @@ for category in categories:
          break
 session.add_all(tasks)
 session.commit()
-
-
-
-
-
 
 # # Create and add tasks with connected usernames
 # tasks = [
