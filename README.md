@@ -101,6 +101,7 @@ if __name__ == '__main__':
     fire.Fire(TaskManager) ```
 
 ## Faker generation
+
 ```
 We generate descriptions for categories using Faker's fake.text() method.
 We create categories with the generated descriptions and add them to the session.
@@ -109,5 +110,6 @@ Finally, we create users and add them to the session as before.
 We generate new usernames using the fake.unique.user_name() method to ensure uniqueness.
 We check if each new username already exists in the Users table. If not, we create a new user with that username and a random password.
 We then proceed to create tasks using the newly generated and verified usernames.
+
 ```
 
