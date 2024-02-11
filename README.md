@@ -1,6 +1,7 @@
 #TASK_MANAGER CLI
 
 ## Author: Martin Maina
+https://wakatime.com/projects/task_manager
 
 ```
 TASK_MANAGER/
