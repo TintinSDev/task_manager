@@ -13,17 +13,17 @@ class UserManager:
             session.rollback()
             print(f'Error adding user: {e}')
 
-    def list_users(self):
-        try:
-            users = session.query(Users).all()
-            if not users:
-                print('No users found.')
-            else:
-                print('Users:')
-                for user in users:
-                    print(f'{user.id}. {user.username} ')
-        except Exception as e:
-            print(f'Error listing users: {e}')
+    # def list_users(self):
+    #     try:
+    #         users = session.query(Users).all()
+    #         if not users:
+    #             print('No users found.')
+    #         else:
+    #             print('Users:')
+    #             for user in users:
+    #                 print(f'{user.id}. {user.username} ')
+    #     except Exception as e:
+    #         print(f'Error listing users: {e}')
 
 def main():
     manager = UserManager()
