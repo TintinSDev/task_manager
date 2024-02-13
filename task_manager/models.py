@@ -1,7 +1,12 @@
+import os
+import sys
+sys.path.append(os.getcwd)
+
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, create_engine
 from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
+
 
 
 
