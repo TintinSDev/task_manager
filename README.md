@@ -5,28 +5,24 @@ https://wakatime.com/projects/task_manager
 
 ```
 TASK_MANAGER/
-├── 
-├── task_manager/
-│   ├── __pycache__
-│   │    ├── .gitignore
-│   │    └── .pyc files
-│   ├── alembic/
-│   │   ├── versions/
-│   │   └── migration package
-│   │   ├── env.py
-│   │   └── script.py.mako
-│   │
-│   ├── __init__.py
-│   ├── models.py
-│   ├── database.py
-│   ├── users.py
-│   ├── manager.py
-│   ├── seed.py
-│   └── task_manager.db
+├── lib
+│   ├── alembic.ini
+│   ├── database.py
+│   ├── __init__.py
+│   ├── manager.py
+│   ├── migrations
+│   │   ├── env.py
+│   │   └── versions
+│   │       └── __pycache__
+│   ├── models.py
+│   ├── notes
+│   ├── __pycache__
+│   ├── seed.py
+│   ├── task_manager.db
+│   └── users.py
 ├── Pipfile
 ├── Pipfile.lock
-└── alembic.ini
-└── README.md 
+└── README.md
 
 ```
 
