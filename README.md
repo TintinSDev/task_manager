@@ -27,7 +27,7 @@ TASK_MANAGER/
 ```
 
 # How to run the project.
-Git clone into git@github.com:TintinSDev/task_manager.git
+*Git clone into git@github.com:TintinSDev/task_manager.git
 cd into task_manager
 Run $python manager.py add_task --description "Your task description" --priority "Your priority" --name "name of user" --enrollment_date "date of enrollment" --category_id "" --user_id ""
 Run your sqlite database and viola, all your tasks added
