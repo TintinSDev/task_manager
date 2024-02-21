@@ -97,30 +97,51 @@ tasks_with_details = session.query(Task).options(
 for task in tasks_with_details:
     print(f'Task: {task.description}, Category: {task.category.name}, User: {task.user.username}')
 
-## Fire Library Code for tasks
+## Fire Library Code for tasks in manager.py
 
 ```
 import fire
 from models import Task, session
 
 class TaskManager:
-    def add_task(self, description, priority,username):
-        new_task = Task(description=description, priority=priority, username=username)
-        session.add(new_task)
-        session.commit()
-        print(f'Task added: {description} (Priority: {priority}, Assigned to: {username})')
+    def add_task(self, description, priority, username):
+        try:
+            new_task = Task(description=description, priority=priority, username=username)
+            session.add(new_task)
+            session.commit()
+            print(f'Task added: {description} (Priority: {priority}, Assigned to: {username})')
+        except Exception as e:
+            session.rollback()
+            print(f'Error adding task: {e}')
 
     def list_tasks(self):
-        tasks = session.query(Task).all()
-        if not tasks:
-            print('No tasks found.')
-        else:
-            print('Tasks:')
-            for task in tasks:
-                print(f'{task.id}. {task.description} (Priority: {task.priority} Assigned to: {username})')
+        try:
+            tasks = session.query(Task).all()
+            if not tasks:
+                print('No tasks found.')
+            else:
+                print('Tasks:')
+                for task in tasks:
+                    print(f'{task.id}. {task.description} (Priority: {task.priority}, Assigned to: {task.username})')
+        except Exception as e:
+            print(f'Error listing tasks: {e}')
+
+    def delete_task(self, task_id):
+        try:
+            task = session.query(Task).filter(Task.id == task_id).first()
+            if task:
+                session.delete(task)
+                session.commit()
+                print(f'Task with ID {task_id} deleted successfully.')
+            else:
+                print(f'Task with ID {task_id} not found.')
+        except Exception as e:
+            session.rollback()
+            print(f'Error deleting task: {e}')
 
 if __name__ == '__main__':
-    fire.Fire(TaskManager) ```
+    fire.Fire(TaskManager)
+
 ```
 ## Faker generation
 
